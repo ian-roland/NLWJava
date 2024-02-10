@@ -8,6 +8,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -27,6 +29,9 @@ public class studentEntity{
     @Column(unique = true, nullable = false)
     private String email;
 
-    // private List<CertificationStudentEntity> certificationStudentEntity;
+    //Essa linha refere-se a cardinalidade do estudante com o certificado, neste caso 1n ou One to Many pois um estudante pode ter mais de 1 certificação.
+
+    @OneToMany(mappedBy = "StudentEntity")
+    private List<CertificationStudentEntity> certificationStudentEntity;
     
 }
